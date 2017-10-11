@@ -1,0 +1,64 @@
+# Wingohocking Data
+set I := S1 S2 S3 S4 S5 S6 S7;
+set J := private  public;
+set K := 1_rain_garden 2_tree_trench;
+set T := volume;
+set D := pervious impervious;
+
+param convert := 
+	volume    1.0	# no conversion necessary - Mgal/yr
+;
+param a :=       # AKRF cost model intercept of log-log fit
+	private    4.98
+	public     5.25
+;
+param b :=      # AKRF cost model slope of log-log fit
+	private    0.24
+	public     0.24
+;
+param g :=   # greened acres per LID from PWD/AKRF
+    1_rain_garden    1.05
+    2_tree_trench    2.7   
+;
+# fraction deployable by ownership category:
+param deploy : 		pervious  impervious  :=
+	1_rain_garden      0.2       0.5
+	2_tree_trench      0.0       0.7
+;
+param pctown :     private    public :=
+ 			S1      0.7        0.3
+			S2      0.7        0.3
+			S3      0.7        0.3
+			S4      0.7        0.3
+			S5      0.7        0.3
+			S6      0.7        0.3
+			S7      0.7        0.3  
+;
+param area :=   #  acre
+			S1      464.6
+			S2      183.9
+			S3      605.1
+			S4      302.6
+			S5      733.4
+			S6      259.2
+			S7      420.8
+;
+param impfr :=   #  impervious fraction
+			S1      0.40
+			S2      0.90
+			S3      0.70
+			S4      0.80
+			S5      0.34
+			S6      0.90
+			S7      0.60
+;
+param h :=
+[*,*,volume]:       1_rain_garden        2_tree_trench   :=
+ 			S1      0.397               0.543
+			S2      0.061               0.097
+			S3      0.079               0.189
+			S4      0.058               0.186
+			S5      0.035               0.073
+			S6      0.021               0.051
+			S7      0.040               0.111  
+;    
